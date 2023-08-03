@@ -35,9 +35,7 @@ var filePath = './1686600147.level';
       } catch (error) {
         console.error("Error decoding level file:", error);
       }
-    });
-    setupControls();
-  }
+    });  }
 
 
 
