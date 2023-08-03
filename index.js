@@ -42,7 +42,6 @@ var filePath = './1686600147.level';
 
 
 
-
   THREE.VolumetericLightShader = {
     uniforms: {
       tDiffuse: {value:null},
@@ -154,11 +153,12 @@ var filePath = './1686600147.level';
         gui = new dat.GUI();
     
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 5000);
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
+  
     function setupScene(){
       var ambientLight,
           geometry,
@@ -222,6 +222,9 @@ var filePath = './1686600147.level';
           xpos = Math.sin(angle) * radius,
           zpos = Math.cos(angle) * radius;
   
+      box.position.set( xpos, 0, zpos);
+      box.rotation.x += 0.01;
+      box.rotation.y += 0.01;
       
       occlusionBox.position.copy(box.position);
       occlusionBox.rotation.copy(box.rotation);
