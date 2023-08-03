@@ -156,7 +156,7 @@
       
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 5000);
-      controls = new FreeControls(camera, renderer.domElement);
+      controls = new FreeControls(camera, renderer);
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
