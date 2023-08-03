@@ -145,7 +145,7 @@
     };
     
     (function(){
-      var scene, camera, renderer, composer, box, pointLight,
+      var scene, camera, renderer, controls, composer, box, pointLight,
           occlusionComposer, occlusionRenderTarget, occlusionBox, lightSphere,
           volumetericLightShaderUniforms,
           DEFAULT_LAYER = 0,
