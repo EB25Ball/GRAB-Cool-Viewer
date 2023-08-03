@@ -347,7 +347,3 @@ var filePath = './1686600147.level';
     addRenderTargetImage();
     onFrame();
   }())
-  function setupControls() {
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.update();
-  }
