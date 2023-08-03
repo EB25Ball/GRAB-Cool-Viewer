@@ -264,7 +264,7 @@
         folder = gui.addFolder('Volumeteric Light Shader');
         Object.keys(volumetericLightShaderUniforms).forEach(function(key) {
           if(key !==  'tDiffuse' && key != 'lightPosition' ){
-            prop = volumetericLightShaderUniforms[key];
+            let prop = volumetericLightShaderUniforms[key];
     
             switch ( key ) {
               case 'exposure':
