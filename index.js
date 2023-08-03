@@ -1,5 +1,4 @@
 
-    import { FreeControls } from "./free_controls.js";
     var filePath = './1686600147.level';
     /* var canvas = document.getElementById("canvas");
      var scene = new THREE.Scene(); // Create a scene object
@@ -145,7 +144,7 @@
     };
     
     (function(){
-      var scene, camera, renderer, controls, composer, box, pointLight,
+      var scene, camera, renderer, composer, box, pointLight,
           occlusionComposer, occlusionRenderTarget, occlusionBox, lightSphere,
           volumetericLightShaderUniforms,
           DEFAULT_LAYER = 0,
@@ -160,7 +159,7 @@
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
       document.body.appendChild( renderer.domElement );
-      controls = new FreeControls(camera, renderer.domElement);
+    
       function setupScene(){
         var ambientLight,
             geometry,
@@ -191,6 +190,21 @@
         scene.add( occlusionBox );
         
         camera.position.z = 6;
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        // Set initial camera position and target
+        camera.position.set(0, 0, 6);
+        controls.target.set(0, 0, 0);
+      
+        // Additional OrbitControls settings
+        controls.update(); // Call this to synchronize camera movement
+      
+        // Event listener to update camera on window resize
+        window.addEventListener('resize', function() {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
       }
     
       function setupPostprocessing(){
@@ -264,7 +278,7 @@
         folder = gui.addFolder('Volumeteric Light Shader');
         Object.keys(volumetericLightShaderUniforms).forEach(function(key) {
           if(key !==  'tDiffuse' && key != 'lightPosition' ){
-            let prop = volumetericLightShaderUniforms[key];
+            prop = volumetericLightShaderUniforms[key];
     
             switch ( key ) {
               case 'exposure':
