@@ -163,7 +163,35 @@
         "}"
       ].join("\n")
     };
-
+    THREE.BloomShader = {
+      uniforms: {
+        tDiffuse: { value: null },
+        bloomStrength: { value: 1.0 },
+        bloomRadius: { value: 0.1 },
+        bloomThreshold: { value: 0.9 },
+      },
+  
+    
+  
+      fragmentShader: `
+        uniform sampler2D tDiffuse;
+        uniform float bloomStrength;
+        uniform float bloomRadius;
+        uniform float bloomThreshold;
+        varying vec2 vUv;
+  
+        void main() {
+          vec4 color = texture2D(tDiffuse, vUv);
+          vec3 bloom = vec3(0.0);
+  
+          if (color.r > bloomThreshold || color.g > bloomThreshold || color.b > bloomThreshold) {
+            bloom = color.rgb * bloomStrength;
+          }
+  
+          gl_FragColor = vec4(color.rgb + bloom, color.a);
+        }
+      `,
+    };
     (function () {
       var scene, renderer, composer, box, pointLight,
         occlusionComposer, occlusionRenderTarget, occlusionBox, lightSphere,
@@ -233,6 +261,12 @@
         pass = new THREE.ShaderPass(THREE.AdditiveBlendingShader);
         pass.uniforms.tAdd.value = occlusionRenderTarget.texture;
         composer.addPass(pass);
+        var bloomPass = new THREE.ShaderPass(THREE.BloomShader);
+  bloomPass.uniforms.bloomStrength.value = 1.0; // Adjust the strength of the bloom effect
+  bloomPass.uniforms.bloomRadius.value = 0.1; // Adjust the radius of the bloom effect
+  bloomPass.uniforms.bloomThreshold.value = 0.9; // Adjust the threshold for bloom activation
+
+  composer.addPass(bloomPass);
         pass.renderToScreen = true;
       }
 
@@ -246,8 +280,6 @@
         var radius = 2.5,
           xpos = Math.sin(angle) * radius,
           zpos = Math.cos(angle) * radius;
-
-        box.position.set(xpos, 0, zpos);
 
         occlusionBox.position.copy(box.position);
         occlusionBox.rotation.copy(box.rotation);
