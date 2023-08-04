@@ -228,11 +228,11 @@
         scene.add(lightSphere);
 
         geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-        material = new THREE.MeshPhongMaterial({ color: 0xe74c3c,
+        material = new THREE.MeshPhongMaterial({ color: 0x20AEAE,
           specular: 0xffffff, // The color of the specular highlight
           shininess: 100 });
         box = new THREE.Mesh(geometry, material);
-        box.position.z = 2;
+        box.position.z = 5;
         scene.add(box);
 
         material = new THREE.MeshBasicMaterial({ color: 0x000000 });
