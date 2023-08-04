@@ -5,7 +5,6 @@
   <script src="https://cdn.jsdelivr.net/npm/protobufjs/dist/protobuf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r78/three.min.js
 "></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5.1/dat.gui.min.js
 "></script>
@@ -177,11 +176,11 @@
 
       scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-     renderer = new THREE.WebGLRenderer();
+      renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
-     const controls = new OrbitControls(camera, renderer.domElement); 
+      const controls = new OrbitControls(camera, renderer.domElement);
       camera.position.set(0, 20, 100);
       controls.update();
       function setupScene() {
