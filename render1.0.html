@@ -181,7 +181,6 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
       const controls = new OrbitControls(camera, renderer.domElement);
-      camera.position.set(0, 20, 100);
       controls.update();
       function setupScene() {
         var ambientLight,
