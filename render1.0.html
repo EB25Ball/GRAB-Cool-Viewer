@@ -418,14 +418,14 @@
 <html>
   <head>
     <meta charset=UTF-8 />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/postprocessing@8.0.1/build/postprocessing.min.js"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/postprocessing@latest/build/postprocessing.min.js"></script>
+    <script type="module">
       let scene, camera, renderer, composer,controls;
 
       function init() {
